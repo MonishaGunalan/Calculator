@@ -32,7 +32,6 @@ public class CalculatorView extends JFrame implements Observer {
 		display.setOpaque(true);
 		display.setBorder(BorderFactory.createLoweredBevelBorder());
 		display.setSize(15, 180);
-		// outerPanel.add(display);
 		outerPanel.add(display, BorderLayout.NORTH);
 
 		JPanel buttonPanel = new JPanel();
@@ -56,7 +55,7 @@ public class CalculatorView extends JFrame implements Observer {
 		JButton divide = new JButton("/");
 		JButton equals = new JButton("=");
 		JButton decimal = new JButton(".");
-		JButton on = new JButton("C");
+		JButton on = new JButton("Reset");
 
 		// Add buttons to action Listener
 		one.addActionListener(controller);
@@ -102,7 +101,6 @@ public class CalculatorView extends JFrame implements Observer {
 		buttonPanel.add(equals);
 		buttonPanel.add(add);
 
-		// outerPanel.add(buttonPanel);
 		outerPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 		// Row 0
