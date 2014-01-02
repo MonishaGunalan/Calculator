@@ -21,7 +21,10 @@ public class CalculatorController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String buttonPressed = e.getActionCommand();
 
-		if (isInt(buttonPressed) && !receivedOp1) {
+		if ((isInt(buttonPressed) || buttonPressed.equals(".")) && !receivedOp1 ) {
+			if(buttonPressed.equals(".") && operator1.equals("")){
+				operator1 += "0";
+			}
 			this.operator1 += buttonPressed;
 			model.display(operator1);
 		
@@ -33,7 +36,10 @@ public class CalculatorController implements ActionListener {
 			this.operand = buttonPressed;
 			receivedOperand = true;
 
-		} else if (isInt(buttonPressed) && receivedOp1 && !receivedOp2) {
+		} else if ((isInt(buttonPressed) || buttonPressed.equals("."))&& receivedOp1 && !receivedOp2) {
+			if(buttonPressed.equals(".") && operator2.equals("")){
+				operator2 += "0";
+			}
 			this.operator2 += buttonPressed;
 			model.display(operator2);
 

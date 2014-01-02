@@ -1,7 +1,7 @@
 import java.util.Observable;
 
 public class CalculatorModel extends Observable {
-	private int operator1, operator2, result;
+	private double operator1, operator2, result;
 	private char operand;
 
 	public CalculatorModel(CalculatorController controller) {
@@ -10,11 +10,11 @@ public class CalculatorModel extends Observable {
 	}
 	
 	public void setOperator1(String operator1){
-		this.operator1 = Integer.parseInt(operator1);
+		this.operator1 = Double.parseDouble(operator1);
 	}
 	
 	public void setOperator2(String operator2){
-		this.operator2 = Integer.parseInt(operator2);
+		this.operator2 = Double.parseDouble(operator2);
 	}
 	
 	public void setOperand(String operand){

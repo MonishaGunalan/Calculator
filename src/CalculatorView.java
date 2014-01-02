@@ -23,7 +23,6 @@ public class CalculatorView extends JFrame implements Observer {
 
 	public void createFrame() {
 		JPanel outerPanel = new JPanel();
-		// outerPanel.setLayout(new GridLayout(2,1));
 		outerPanel.setLayout(new BorderLayout());
 		this.add(outerPanel);
 
