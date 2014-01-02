@@ -11,34 +11,34 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-
 public class CalculatorView extends JFrame implements Observer {
 	private CalculatorController controller;
+	private JLabel display;
 
-	public CalculatorView(CalculatorController controller){
-		super("Calculator");	
+	public CalculatorView(CalculatorController controller) {
+		super("Calculator");
 		this.controller = controller;
 		createFrame();
 	}
-	
-	public void createFrame(){
+
+	public void createFrame() {
 		JPanel outerPanel = new JPanel();
-		//outerPanel.setLayout(new GridLayout(2,1));
+		// outerPanel.setLayout(new GridLayout(2,1));
 		outerPanel.setLayout(new BorderLayout());
 		this.add(outerPanel);
-		
-		JLabel display = new JLabel("0", JLabel.RIGHT);
-		display.setBackground(new Color(238,251,191));
+
+		display = new JLabel("0", JLabel.RIGHT);
+		display.setBackground(new Color(238, 251, 191));
 		display.setOpaque(true);
 		display.setBorder(BorderFactory.createLoweredBevelBorder());
 		display.setSize(15, 180);
-		//outerPanel.add(display);
+		// outerPanel.add(display);
 		outerPanel.add(display, BorderLayout.NORTH);
-		
+
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(4,4));
-		
-		//Create Buttons
+		buttonPanel.setLayout(new GridLayout(4, 4));
+
+		// Create Buttons
 		JButton one = new JButton("1");
 		JButton two = new JButton("2");
 		JButton three = new JButton("3");
@@ -49,7 +49,7 @@ public class CalculatorView extends JFrame implements Observer {
 		JButton eight = new JButton("8");
 		JButton nine = new JButton("9");
 		JButton zero = new JButton("0");
-		
+
 		JButton add = new JButton("+");
 		JButton subtract = new JButton("-");
 		JButton multiply = new JButton("*");
@@ -57,7 +57,7 @@ public class CalculatorView extends JFrame implements Observer {
 		JButton equals = new JButton("=");
 		JButton decimal = new JButton(".");
 		JButton on = new JButton("C");
-		
+
 		// Add buttons to action Listener
 		one.addActionListener(controller);
 		two.addActionListener(controller);
@@ -69,7 +69,7 @@ public class CalculatorView extends JFrame implements Observer {
 		eight.addActionListener(controller);
 		nine.addActionListener(controller);
 		zero.addActionListener(controller);
-		
+
 		add.addActionListener(controller);
 		subtract.addActionListener(controller);
 		multiply.addActionListener(controller);
@@ -77,48 +77,45 @@ public class CalculatorView extends JFrame implements Observer {
 		equals.addActionListener(controller);
 		decimal.addActionListener(controller);
 		on.addActionListener(controller);
-		
+
 		// Row 1
 		buttonPanel.add(seven);
 		buttonPanel.add(eight);
 		buttonPanel.add(nine);
 		buttonPanel.add(divide);
-		
+
 		// Row 2
 		buttonPanel.add(four);
 		buttonPanel.add(five);
 		buttonPanel.add(six);
 		buttonPanel.add(multiply);
-		
+
 		// Row 3
 		buttonPanel.add(one);
 		buttonPanel.add(two);
 		buttonPanel.add(three);
 		buttonPanel.add(subtract);
-		
+
 		// Row 4
 		buttonPanel.add(zero);
 		buttonPanel.add(decimal);
 		buttonPanel.add(equals);
 		buttonPanel.add(add);
-		
-		
-		//outerPanel.add(buttonPanel);
-		outerPanel.add(buttonPanel, BorderLayout.SOUTH );
-		
-		
+
+		// outerPanel.add(buttonPanel);
+		outerPanel.add(buttonPanel, BorderLayout.SOUTH);
+
 		// Row 0
 		outerPanel.add(on, BorderLayout.CENTER);
-		
+
 		setSize(200, 200);
 		setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-
-		
+	public void update(Observable model, Object o) {
+		display.setText((String)o);		
 	}
 
 }
