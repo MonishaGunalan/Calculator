@@ -5,47 +5,46 @@ public class CalculatorController implements ActionListener {
 
 	private String operator1 = "";
 	private String operator2 = "";
-	private String operand = "";
-	private String equals = "";
+	private String operand;
+	private String equals;
 	private boolean receivedOp1 = false;
 	private boolean receivedOp2 = false;
 	private boolean receivedOperand = false;
 	private boolean receivedEquals = false;
+	private CalculatorModel model;
 
 	public CalculatorController() {
-		CalculatorModel model = new CalculatorModel();
-		CalculatorView view = new CalculatorView(this);
+		model = new CalculatorModel(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String buttonPressed = e.getActionCommand();
-		// System.out.println(buttonPressed);
 
 		if (isInt(buttonPressed) && !receivedOp1) {
-			operator1 += Integer.parseInt(buttonPressed);
-			System.out.println("Operator1: " + operator1);
-
-		} else if (validOperand(buttonPressed)) {
+			this.operator1 += buttonPressed;
+			model.display(operator1);
+		
+		} else if (validOperand(buttonPressed) && !operator1.equals("")) {
 			receivedOp1 = true;
-			operand = buttonPressed;
+			this.operand = buttonPressed;
 			receivedOperand = true;
-			System.out.println("Operand: " + operand);
 
 		} else if (isInt(buttonPressed) && receivedOp1 && !receivedOp2) {
-			operator2 += Integer.parseInt(buttonPressed);
-			System.out.println("Operator2: " + operator2);
-			
-		} else if (buttonPressed.equals("=")) {
+			this.operator2 += buttonPressed;
+			model.display(operator2);
+
+		} else if (buttonPressed.equals("=") && receivedOp1 && !operator2.equals("") && receivedOperand) {
 			receivedOp2 = true;
-			equals = buttonPressed;
+			this.equals = buttonPressed;
 			receivedEquals = true;
-			System.out.println("Equals: " + equals);
+			performOperation();
+			reset();
 
 		} else if (buttonPressed.equals("C")) {
 			System.out.println("Reset. Ready for next calculation");
 			reset();
-		
+			model.display("0");
 		} else {
 			System.out.println("Invalid Input");
 		}
@@ -66,6 +65,14 @@ public class CalculatorController implements ActionListener {
 			return true;
 		}
 		return false;
+	}
+	
+	public void performOperation(){
+		System.out.print(operator1 + operand + operator2 + equals);
+		model.setOperator1(operator1);
+		model.setOperator2(operator2);
+		model.setOperand(operand);
+		model.performCalculation();
 	}
 
 	public void reset() {
