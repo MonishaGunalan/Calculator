@@ -41,7 +41,7 @@ public class CalculatorController implements ActionListener {
 			performOperation();
 			reset();
 
-		} else if (buttonPressed.equals("C")) {
+		} else if (buttonPressed.equals("Reset")) {
 			System.out.println("Reset. Ready for next calculation");
 			reset();
 			model.display("0");
