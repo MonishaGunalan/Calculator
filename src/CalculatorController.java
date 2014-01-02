@@ -25,7 +25,10 @@ public class CalculatorController implements ActionListener {
 			this.operator1 += buttonPressed;
 			model.display(operator1);
 		
-		} else if (validOperand(buttonPressed) && !operator1.equals("")) {
+		} else if (validOperand(buttonPressed)) {
+			if(operator1.equals("")){
+				operator1 = "0";
+			}
 			receivedOp1 = true;
 			this.operand = buttonPressed;
 			receivedOperand = true;
@@ -47,6 +50,7 @@ public class CalculatorController implements ActionListener {
 			model.display("0");
 		} else {
 			System.out.println("Invalid Input");
+			model.display("Error");
 		}
 	}
 

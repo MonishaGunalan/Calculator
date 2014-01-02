@@ -29,10 +29,16 @@ public class CalculatorModel extends Observable {
 				break;
 		case '*': result = operator1 * operator2;
 				break;
-		case '/': result = operator1 / operator2;
+		case '/': 
+			try{
+				result = operator1 / operator2;
 				break;
-		}
-		
+			}catch(ArithmeticException e){
+				display("Error");
+				System.out.println("Error");
+				return;
+			}
+		}			
 		System.out.println(" "+ result);
 		display("" + result);
 	}
